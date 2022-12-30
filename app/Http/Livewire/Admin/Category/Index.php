@@ -10,6 +10,22 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+    public $category_id;
+    protected $listeners = ['deleteConfirmed' => 'deleteCategory'];
+
+    public function deleteConfirmation($category_id)
+    {
+        $this->category_id = $category_id;
+        $this->dispatchBrowserEvent('show-delete-confirmation');
+    }
+
+    public function deleteCategory()
+    {
+        $category = Category::where('id', $this->category_id)->first();
+        $category->delete();
+
+        $this->dispatchBrowserEvent('categoryDeleted');
+    }
 
     public function render()
     {

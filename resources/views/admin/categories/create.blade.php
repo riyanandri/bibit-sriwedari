@@ -2,6 +2,7 @@
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('admin/node_modules/summernote/dist/summernote-bs4.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/node_modules/selectric/public/selectric.css') }}">
 @endpush
 
 @section('content')
@@ -83,9 +84,9 @@
                                             <div class="col-md-6 col-lg-6">
                                                 <div class="form-group mb-0">
                                                     <label>Status</label>
-                                                    <select class="form-control" name="status">
-                                                        <option>Aktif</option>
-                                                        <option>Nonaktif</option>
+                                                    <select class="form-control selectric" name="status">
+                                                        <option value="0">Publish</option>
+                                                        <option value="1">Draft</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -151,5 +152,5 @@
 
 @push('js')
 <script src="{{ asset('admin/node_modules/summernote/dist/summernote-bs4.js') }}"></script>
-<script src="{{ asset('admin/js/page/forms-advanced-forms.js') }}"></script>
+<script src="{{ asset('admin/node_modules/selectric/public/jquery.selectric.min.js') }}"></script>
 @endpush

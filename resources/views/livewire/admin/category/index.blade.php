@@ -56,7 +56,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ url('admin/category/'.$category->id.'/edit') }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                            <a href="#" wire:click.prevent='deleteConfirmation({{ $category->id }})' class="btn btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach

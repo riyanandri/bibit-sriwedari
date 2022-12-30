@@ -22,19 +22,19 @@ $("#swal-5").click(function() {
 
 $("#swal-6").click(function() {
   swal({
-      title: 'Are you sure?',
-      text: 'Once deleted, you will not be able to recover this imaginary file!',
+      title: 'Anda yakin?',
+      text: 'File yang telah dihapus tidak dapat dikembalikan lagi!',
       icon: 'warning',
       buttons: true,
       dangerMode: true,
     })
     .then((willDelete) => {
       if (willDelete) {
-      swal('Poof! Your imaginary file has been deleted!', {
+      swal('File telah dihapus!', {
         icon: 'success',
       });
       } else {
-      swal('Your imaginary file is safe!');
+      swal('File anda masih aman!');
       }
     });
 });
