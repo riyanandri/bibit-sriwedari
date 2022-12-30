@@ -40,9 +40,14 @@ class CategoryController extends Controller
         $category->meta_title = $validated['meta_title'];
         $category->meta_keyword = $validated['meta_keyword'];
         $category->meta_description = $validated['meta_description'];
-        $category->status = $request->status == true ? '1' : '0';
+        $category->status = $request->status == true ? 1 : 0;
         $category->save();
 
         return redirect('admin/category')->with('message', 'Data kategori berhasil ditambahkan');
+    }
+
+    public function edit(Category $category)
+    {
+        return view('admin.categories.edit', compact('category'));
     }
 }

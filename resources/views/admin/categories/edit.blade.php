@@ -7,7 +7,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Tambah Data Kategori</h1>
+        <h1>Edit Data Kategori</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="#">Kategori</a></div>
@@ -22,7 +22,7 @@
                     <form action="{{ url('admin/category') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
-                            <h4>Form Tambah Data</h4>
+                            <h4>Form Edit Data</h4>
                         </div>
                         <div class="card-body">
                             <div id="accordion">
@@ -35,7 +35,7 @@
                                             <div class="col-md-6 col-lg-6">
                                                 <div class="form-group">
                                                     <label>Nama Kategori</label>
-                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name">
+                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ $category->name }}" name="name">
                                                     @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -46,7 +46,7 @@
                                             <div class="col-md-6 col-lg-6">
                                                 <div class="form-group">
                                                     <label>Slug</label>
-                                                    <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug">
+                                                    <input type="text" class="form-control @error('slug') is-invalid @enderror" value="{{ $category->slug }}" name="slug">
                                                     @error('slug')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -59,7 +59,7 @@
                                             <div class="col-md-12 col-lg-12">
                                                 <div class="form-group">
                                                     <label>Deskripsi</label>
-                                                    <textarea class="summernote form-control @error('description') is-invalid @enderror" name="description"></textarea>
+                                                    <textarea class="summernote form-control @error('description') is-invalid @enderror" name="description">{{ $category->description }}</textarea>
                                                     @error('description')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -73,6 +73,7 @@
                                                 <div class="form-group mb-0">
                                                     <label>Gambar</label>
                                                     <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+                                                    <img src="{{ asset('/uploads/category/'.$category->image) }}" width="60px" height="60px">
                                                     @error('image')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -151,5 +152,4 @@
 
 @push('js')
 <script src="{{ asset('admin/node_modules/summernote/dist/summernote-bs4.js') }}"></script>
-<script src="{{ asset('admin/js/page/forms-advanced-forms.js') }}"></script>
 @endpush

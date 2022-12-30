@@ -52,7 +52,7 @@
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td>
-                                            <div class="badge badge-success">{{ $category->status == '1' ? 'Nonaktif' : 'Aktif' }}</div>
+                                            <div class="badge badge-success">{{ $category->status == 1 ? 'Draft' : 'Publish' }}</div>
                                         </td>
                                         <td>
                                             <a href="{{ url('admin/category/'.$category->id.'/edit') }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
