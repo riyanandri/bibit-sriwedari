@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSentraBibitsTable extends Migration
+class CreateProductImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateSentraBibitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sentra_bibits', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug');
-            $table->tinyInteger('status')->default(0)->comment('0=publish,1=draft');
+            $table->unsignedBigInteger('product_id');
+            $table->string('image');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSentraBibitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sentra_bibits');
+        Schema::dropIfExists('product_images');
     }
 }

@@ -35,6 +35,13 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('/category/{category}', 'update');
     });
 
+    // produk
+    Route::controller(App\Http\Controllers\Admin\ProductController::class)->group(function () {
+        Route::get('/products', 'index');
+        Route::get('/products/create', 'create');
+        Route::post('/products', 'store');
+    });
+
     // sentra bibit
     Route::get('/sentra-bibit', App\Http\Livewire\Admin\SentraBibit\Index::class);
 });
