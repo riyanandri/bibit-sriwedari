@@ -47,7 +47,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($categories as $category)
+                                    @forelse ($categories as $category)
                                     <tr>
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
@@ -59,7 +59,11 @@
                                             <a href="#" wire:click.prevent='deleteConfirmation({{ $category->id }})' class="btn btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">Data Kategori Bibit tidak ditemukan!</td>
+                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                             <div class="card-footer text-right">
