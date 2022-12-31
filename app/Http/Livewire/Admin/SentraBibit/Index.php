@@ -11,7 +11,8 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $name, $slug, $status;
+    public $name, $slug, $status, $sentra_id;
+    protected $listeners = ['deleteConfirmed' => 'deleteSentraBibit'];
 
     public function resetInput()
     {
@@ -36,6 +37,58 @@ class Index extends Component
         session()->flash('message', 'Data sentra bibit berhasil ditambahkan');
         $this->dispatchBrowserEvent('close-modal');
         $this->resetInput();
+    }
+
+    public function closeModal()
+    {
+        $this->resetInput();
+    }
+
+    public function openModal()
+    {
+        $this->resetInput();
+    }
+
+    public function editSentraBibit(int $sentra_id)
+    {
+        $this->sentra_id = $sentra_id;
+        $sentra = SentraBibit::findOrFail($sentra_id);
+        $this->name = $sentra->name;
+        $this->slug = $sentra->slug;
+        $this->status = $sentra->status;
+    }
+
+    public function updateSentraBibit()
+    {
+        $this->validate([
+            'name' => 'required|string',
+            'slug' => 'required|string',
+            'status' => 'required',
+        ]);
+
+        SentraBibit::findOrFail($this->sentra_id)->update([
+            'name' => $this->name,
+            'slug' => Str::slug($this->slug),
+            'status' => $this->status == true ? 1 : 0,
+        ]);
+
+        session()->flash('message', 'Data sentra bibit berhasil diupdate');
+        $this->dispatchBrowserEvent('close-modal');
+        $this->resetInput();
+    }
+
+    public function deleteConfirmation($sentra_id)
+    {
+        $this->sentra_id = $sentra_id;
+        $this->dispatchBrowserEvent('show-delete-confirmation');
+    }
+
+    public function deleteSentraBibit()
+    {
+        $sentra = SentraBibit::where('id', $this->sentra_id)->first();
+        $sentra->delete();
+
+        $this->dispatchBrowserEvent('sentraBibitDeleted');
     }
 
     public function render()
