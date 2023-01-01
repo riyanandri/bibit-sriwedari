@@ -1,13 +1,13 @@
 "use strict";
 
 var dropzone = new Dropzone("#mydropzone", {
-  url: "#"
+  url: "admin/products"
 });
 
-var minSteps = 6,
-  maxSteps = 60,
-  timeBetweenSteps = 100,
-  bytesPerStep = 100000;
+// var minSteps = 6,
+//   maxSteps = 60,
+//   timeBetweenSteps = 100,
+//   bytesPerStep = 100000;
 
 dropzone.uploadFiles = function(files) {
   var self = this;

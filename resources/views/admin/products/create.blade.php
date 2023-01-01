@@ -3,7 +3,7 @@
 @push('css')
 <link rel="stylesheet" href="{{ asset('admin/node_modules/summernote/dist/summernote-bs4.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/node_modules/selectric/public/selectric.css') }}">
-<link rel="stylesheet" href="{{ asset('admin/node_modules/dropzone/dist/min/dropzone.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('admin/node_modules/dropzone/dist/min/dropzone.min.css') }}"> --}}
 @endpush
 
 @section('content')
@@ -108,7 +108,7 @@
                                         <div class="col-md-6 col-lg-6">
                                             <div class="form-group">
                                                 <label>Harga Asli</label>
-                                                <input type="number" class="form-control @error('original_price') is-invalid @enderror" name="original_price">
+                                                <input type="text" class="form-control @error('original_price') is-invalid @enderror" name="original_price">
                                                 @error('original_price')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -119,7 +119,7 @@
                                         <div class="col-md-6 col-lg-6">
                                             <div class="form-group">
                                                 <label>Harga Jual</label>
-                                                <input type="number" class="form-control @error('selling_price') is-invalid @enderror" name="selling_price">
+                                                <input type="text" class="form-control @error('selling_price') is-invalid @enderror" name="selling_price">
                                                 @error('selling_price')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -164,11 +164,15 @@
                                 </div>
                                 <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab3">
                                     <div class="row">
-                                        <div class="col-md-12 col-lg-12 mt-3">
-                                            <div class="form-group dropzone" id="mydropzone">
-                                                <div class="fallback">
-                                                    <input name="image" type="file" class="form-control" multiple />
-                                                </div>
+                                        <div class="col-md-12 col-lg-12">
+                                            <div class="form-group">
+                                                <label>Upload Gambar Produk</label>
+                                                <input name="image[]" type="file" class="form-control @error('image') is-invalid @enderror" multiple />
+                                                @error('image')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -228,6 +232,6 @@
 @push('js')
 <script src="{{ asset('admin/node_modules/summernote/dist/summernote-bs4.js') }}"></script>
 <script src="{{ asset('admin/node_modules/selectric/public/jquery.selectric.min.js') }}"></script>
-<script src="{{ asset('admin/node_modules/dropzone/dist/min/dropzone.min.js') }}"></script>
-<script src="{{ asset('admin/js/page/components-multiple-upload.js') }}"></script>
+{{-- <script src="{{ asset('admin/node_modules/dropzone/dist/min/dropzone.min.js') }}"></script>
+<script src="{{ asset('admin/js/page/components-multiple-upload.js') }}"></script> --}}
 @endpush
