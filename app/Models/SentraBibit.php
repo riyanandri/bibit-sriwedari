@@ -16,4 +16,9 @@ class SentraBibit extends Model
         'slug',
         'status',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'sentra_bibit', 'id');
+    }
 }

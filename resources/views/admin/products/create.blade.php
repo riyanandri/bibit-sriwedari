@@ -3,7 +3,6 @@
 @push('css')
 <link rel="stylesheet" href="{{ asset('admin/node_modules/summernote/dist/summernote-bs4.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/node_modules/selectric/public/selectric.css') }}">
-{{-- <link rel="stylesheet" href="{{ asset('admin/node_modules/dropzone/dist/min/dropzone.min.css') }}"> --}}
 @endpush
 
 @section('content')
@@ -232,6 +231,4 @@
 @push('js')
 <script src="{{ asset('admin/node_modules/summernote/dist/summernote-bs4.js') }}"></script>
 <script src="{{ asset('admin/node_modules/selectric/public/jquery.selectric.min.js') }}"></script>
-{{-- <script src="{{ asset('admin/node_modules/dropzone/dist/min/dropzone.min.js') }}"></script>
-<script src="{{ asset('admin/js/page/components-multiple-upload.js') }}"></script> --}}
 @endpush

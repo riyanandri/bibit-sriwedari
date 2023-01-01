@@ -52,7 +52,11 @@
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td>
-                                            <div class="badge badge-success">{{ $category->status == 1 ? 'Draft' : 'Publish' }}</div>
+                                            @if ($category->status == 1)
+                                            <div class="badge badge-primary">Draft</div>
+                                            @else
+                                            <div class="badge badge-success">Publish</div>
+                                            @endif
                                         </td>
                                         <td>
                                             <a href="{{ url('admin/category/'.$category->id.'/edit') }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
@@ -61,7 +65,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Data Kategori Bibit tidak ditemukan!</td>
+                                        <td colspan="5" class="text-center">Data Kategori tidak ditemukan!</td>
                                     </tr>
                                     @endforelse
                                 </tbody>

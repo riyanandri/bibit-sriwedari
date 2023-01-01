@@ -13,10 +13,11 @@
                 </button>
             </div>
             <form wire:submit.prevent="storeSentraBibit">
+                @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Sentra Bibit</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" wire:model="name" name="name">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" wire:model.defer="name" name="name">
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -25,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label>Slug</label>
-                        <input type="text" class="form-control @error('slug') is-invalid @enderror" wire:model="slug" name="slug">
+                        <input type="text" class="form-control @error('slug') is-invalid @enderror" wire:model.defer="slug" name="slug">
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -34,14 +35,13 @@
                     </div>
                     <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control selectric" wire:model="status" name="status">
+                        <select class="form-control selectric" wire:model.defer="status" name="status">
                             <option value="0">Publish</option>
                             <option value="1">Draft</option>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-secondary" wire:click="closeModal" data-dismiss="modal">Kembali</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
@@ -60,10 +60,11 @@
                 </button>
             </div>
             <form wire:submit.prevent="updateSentraBibit">
+                @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Sentra Bibit</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" wire:model="name" name="name">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" wire:model.defer="name" name="name">
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -72,7 +73,7 @@
                     </div>
                     <div class="form-group">
                         <label>Slug</label>
-                        <input type="text" class="form-control @error('slug') is-invalid @enderror" wire:model="slug" name="slug">
+                        <input type="text" class="form-control @error('slug') is-invalid @enderror" wire:model.defer="slug" name="slug">
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -81,14 +82,13 @@
                     </div>
                     <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control selectric" wire:model="status" name="status">
+                        <select class="form-control selectric" wire:model.defer="status" name="status">
                             <option value="0">Publish</option>
                             <option value="1">Draft</option>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-secondary" wire:click="closeModal" data-dismiss="modal">Kembali</button>
                     <button type="submit" class="btn btn-primary">Simpan perubahan</button>
                 </div>
             </form>

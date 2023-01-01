@@ -44,32 +44,55 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Kategori</th>
+                                        <th>Kategori</th>
+                                        <th>Produk</th>
+                                        <th>Harga Asli</th>
+                                        <th>Harga Jual</th>
+                                        <th>Stok</th>
+                                        <th>Sentra Bibit</th>
+                                        <th>Trending</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse ($products as $product)
                                     <tr>
-                                        <td>1</td>
-                                    </tr>
-                                    {{-- @forelse ($categories as $category)
-                                    <tr>
-                                        <td>{{ $category->id }}</td>
-                                    <td>{{ $category->name }}</td>
-                                    <td>
-                                        <div class="badge badge-success">{{ $category->status == 1 ? 'Draft' : 'Publish' }}</div>
-                                    </td>
-                                    <td>
-                                        <a href="{{ url('admin/category/'.$category->id.'/edit') }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                                        <a href="#" wire:click.prevent='deleteConfirmation({{ $category->id }})' class="btn btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Hapus</a>
-                                    </td>
+                                        <td>{{ $product->id }}</td>
+                                        <td>{{ $product->category->name }}</td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>
+                                            @currency($product->original_price)
+                                        </td>
+                                        <td>
+                                            @currency($product->selling_price)
+                                        </td>
+                                        <td>{{ $product->quantity }}</td>
+                                        <td>{{ $product->sentraBibit->name }}</td>
+                                        <td>
+                                            @if ($product->trending == 1)
+                                            <div class="badge badge-warning">Ya</div>
+                                            @else
+                                            <div class="badge badge-danger">Tidak</div>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($product->status == 1)
+                                            <div class="badge badge-primary">Draft</div>
+                                            @else
+                                            <div class="badge badge-success">Publish</div>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                            <a href="#" class="btn btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                        </td>
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Data Kategori Bibit tidak ditemukan!</td>
+                                        <td colspan="10" class="text-center">Data Produk tidak ditemukan!</td>
                                     </tr>
-                                    @endforelse --}}
+                                    @endforelse
                                 </tbody>
                             </table>
                             {{-- <div class="card-footer text-right">

@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->string('slug');
-            $table->string('sentra_bibit')->nullable();
+            $table->unsignedBigInteger('sentra_bibit');
             $table->longText('description')->nullable();
             $table->integer('original_price');
             $table->integer('selling_price');
@@ -29,6 +29,7 @@ class CreateProductsTable extends Migration
             $table->mediumText('meta_keyword')->nullable();
             $table->mediumText('meta_description')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('sentra_bibit')->references('id')->on('sentra_bibits')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -25,7 +25,7 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <h4><a href="#" class="btn btn-icon icon-left btn-primary" data-toggle="modal" data-target="#modalSentraBibit"><i class="fas fa-plus"></i></i> Tambah data</a></h4>
+                            <h4><a href="#" wire:click="openModal" class="btn btn-icon icon-left btn-primary" data-toggle="modal" data-target="#modalSentraBibit"><i class="fas fa-plus"></i></i> Tambah data</a></h4>
                             <div class="card-header-form">
                                 <form>
                                     <div class="input-group">
@@ -54,7 +54,11 @@
                                             <td>{{ $sentra->id }}</td>
                                             <td>{{ $sentra->name }}</td>
                                             <td>
-                                                <div class="badge badge-success">{{ $sentra->status == 1 ? 'Draft' : 'Publish' }}</div>
+                                                @if ($sentra->status == 1)
+                                                <div class="badge badge-primary">Draft</div>
+                                                @else
+                                                <div class="badge badge-success">Publish</div>
+                                                @endif
                                             </td>
                                             <td>
                                                 <a href="#" wire:click="editSentraBibit({{ $sentra->id }})" data-toggle="modal" data-target="#updateSentraBibit" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
