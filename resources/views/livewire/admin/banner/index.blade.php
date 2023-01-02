@@ -56,7 +56,7 @@
                                         <td>
                                             <img src="{{ asset($banner->image) }}" style="width: 70px; height: 45px;" alt="banner" />
                                         </td>
-                                        <td>{{ $banner->description }}</td>
+                                        <td>{!! html_entity_decode($banner->description) !!}</td>
                                         <td>
                                             @if ($banner->status == 1)
                                             <div class="badge badge-primary">Draft</div>
