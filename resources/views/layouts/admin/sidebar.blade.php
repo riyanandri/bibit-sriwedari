@@ -10,6 +10,9 @@
             <li class="nav-item {{ set_active('admin/dashboard') }}">
                 <a href="{{ url('admin/dashboard') }}" class="nav-link"><i class="fas fa-home"></i><span>Dashboard</span></a>
             </li>
+            <li class="nav-item {{ set_active('admin/banners') }}">
+                <a href="{{ url('admin/banners') }}" class="nav-link"><i class="fas fa-store"></i><span>Banner</span></a>
+            </li>
             <li class="nav-item {{ set_active('admin/sentra-bibit') }}">
                 <a href="{{ url('admin/sentra-bibit') }}" class="nav-link"><i class="fas fa-store"></i><span>Sentra Bibit</span></a>
             </li>

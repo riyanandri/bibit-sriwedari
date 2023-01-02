@@ -2,7 +2,7 @@
 
 @section('content')
 <div>
-    <livewire:admin.product.index />
+    <livewire:admin.banner.index />
 </div>
 @endsection
 
@@ -28,7 +28,7 @@
             });
     });
 
-    window.addEventListener('productDeleted', event => {
+    window.addEventListener('bannerDeleted', event => {
         swal('Data telah dihapus!', {
             icon: 'success'
         , });

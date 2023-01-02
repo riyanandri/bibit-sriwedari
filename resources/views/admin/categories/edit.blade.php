@@ -75,8 +75,8 @@
                                                 <div class="form-group mb-0">
                                                     <label>Gambar</label>
                                                     <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
-                                                    <div id="image-preview" class="mt-3 image-preview">
-                                                        <img src="{{ asset('/uploads/category/'.$category->image) }}" width="250px" height="250px">
+                                                    <div class="mt-3 border">
+                                                        <img src="{{ asset('/uploads/category/'.$category->image) }}" alt="kategori">
                                                     </div>
                                                     @error('image')
                                                     <span class="invalid-feedback" role="alert">
@@ -144,7 +144,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <button class="btn btn-primary">Simpan</button>
+                            <button class="btn btn-primary">Simpan Perubahan</button>
                         </div>
                     </form>
                 </div>

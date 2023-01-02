@@ -1,10 +1,10 @@
 <section class="section">
     <div class="section-header">
-        <h1>Data Kategori</h1>
+        <h1>Data Banner</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Kategori</a></div>
-            <div class="breadcrumb-item">Daftar Kategori</div>
+            <div class="breadcrumb-item"><a href="#">Banner</a></div>
+            <div class="breadcrumb-item">Daftar Banner</div>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <h4><a href="{{ url('admin/category/create') }}" class="btn btn-icon icon-left btn-primary"><i class="fas fa-plus"></i></i> Tambah data</a></h4>
+                        <h4><a href="{{ url('admin/banners/create') }}" class="btn btn-icon icon-left btn-primary"><i class="fas fa-plus"></i></i> Tambah data</a></h4>
                         <div class="card-header-form">
                             <form>
                                 <div class="input-group">
@@ -41,35 +41,37 @@
                                 <thead>
                                     <tr>
                                         <th width="5%">No</th>
-                                        <th width="15%">Nama</th>
-                                        <th width="15%">Slug</th>
+                                        <th width="15%">Judul</th>
+                                        <th width="15%">Gambar</th>
                                         <th width="30%">Deskripsi</th>
                                         <th width="15%">Status</th>
                                         <th width="20%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($categories as $category)
+                                    @forelse ($banners as $banner)
                                     <tr>
-                                        <td>{{ $category->id }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->slug }}</td>
-                                        <td>{{ $category->description }}</td>
+                                        <td>{{ $banner->id }}</td>
+                                        <td>{{ $banner->title }}</td>
                                         <td>
-                                            @if ($category->status == 1)
+                                            <img src="{{ asset($banner->image) }}" style="width: 70px; height: 45px;" alt="banner" />
+                                        </td>
+                                        <td>{{ $banner->description }}</td>
+                                        <td>
+                                            @if ($banner->status == 1)
                                             <div class="badge badge-primary">Draft</div>
                                             @else
                                             <div class="badge badge-success">Publish</div>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/category/'.$category->id.'/edit') }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                                            <a href="#" wire:click.prevent='deleteConfirmation({{ $category->id }})' class="btn btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                            <a href="{{ url('admin/banners/'.$banner->id.'/edit') }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                            <a href="#" wire:click.prevent='deleteConfirmation({{ $banner->id }})' class="btn btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                                         </td>
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Data Kategori tidak ditemukan!</td>
+                                        <td colspan="6" class="text-center">Data banner tidak ditemukan!</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
@@ -77,7 +79,7 @@
                             <div class="card-footer text-right">
                                 <nav class="d-inline-block">
                                     <ul class="pagination mb-0">
-                                        {{ $categories->links() }}
+                                        {{ $banners->links() }}
                                     </ul>
                                 </nav>
                             </div>

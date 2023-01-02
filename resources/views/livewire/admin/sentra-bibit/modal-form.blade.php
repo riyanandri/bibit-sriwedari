@@ -1,7 +1,3 @@
-@push('css')
-<link rel="stylesheet" href="{{ asset('admin/node_modules/selectric/public/selectric.css') }}">
-@endpush
-
 <!-- Insert Data -->
 <div wire:ignore.self class="modal fade" tabindex="-1" role="dialog" id="modalSentraBibit" aria-labelledby="modalSentraBibit" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -89,13 +85,9 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
-                    <button type="submit" class="btn btn-primary">Simpan perubahan</button>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-@push('js')
-<script src="{{ asset('admin/node_modules/selectric/public/jquery.selectric.min.js') }}"></script>
-@endpush

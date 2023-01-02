@@ -26,6 +26,15 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     // dashboard
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
 
+    // banner
+    Route::controller(App\Http\Controllers\Admin\BannerController::class)->group(function () {
+        Route::get('/banners', 'index');
+        Route::get('/banners/create', 'create');
+        Route::post('/banners', 'store');
+        Route::get('/banners/{banner}/edit', 'edit');
+        Route::put('/banners/{banner}', 'update');
+    });
+
     // kategori
     Route::controller(App\Http\Controllers\Admin\CategoryController::class)->group(function () {
         Route::get('/category', 'index');
@@ -40,6 +49,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/products', 'index');
         Route::get('/products/create', 'create');
         Route::post('/products', 'store');
+        Route::get('/products/{product}/edit', 'edit');
+        Route::put('/products/{product}', 'update');
+        Route::get('/product-image/{product_image_id}/delete', 'destroyImage');
     });
 
     // sentra bibit

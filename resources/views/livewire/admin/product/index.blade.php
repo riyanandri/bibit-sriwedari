@@ -1,10 +1,10 @@
 <section class="section">
     <div class="section-header">
-        <h1>Data Kategori</h1>
+        <h1>Data Produk</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Kategori</a></div>
-            <div class="breadcrumb-item">Daftar Kategori</div>
+            <div class="breadcrumb-item"><a href="#">Produk</a></div>
+            <div class="breadcrumb-item">Daftar Produk</div>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <h4><a href="{{ url('admin/category/create') }}" class="btn btn-icon icon-left btn-primary"><i class="fas fa-plus"></i></i> Tambah data</a></h4>
+                        <h4><a href="{{ url('admin/products/create') }}" class="btn btn-icon icon-left btn-primary"><i class="fas fa-plus"></i></i> Tambah data</a></h4>
                         <div class="card-header-form">
                             <form>
                                 <div class="input-group">
@@ -41,35 +41,53 @@
                                 <thead>
                                     <tr>
                                         <th width="5%">No</th>
-                                        <th width="15%">Nama</th>
-                                        <th width="15%">Slug</th>
-                                        <th width="30%">Deskripsi</th>
-                                        <th width="15%">Status</th>
+                                        <th>Kategori</th>
+                                        <th>Produk</th>
+                                        <th>Harga Asli</th>
+                                        <th>Harga Jual</th>
+                                        <th>Stok</th>
+                                        <th>Sentra Bibit</th>
+                                        <th>Trending</th>
+                                        <th>Status</th>
                                         <th width="20%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($categories as $category)
+                                    @forelse ($products as $product)
                                     <tr>
-                                        <td>{{ $category->id }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->slug }}</td>
-                                        <td>{{ $category->description }}</td>
+                                        <td>{{ $product->id }}</td>
+                                        <td>{{ $product->category->name }}</td>
+                                        <td>{{ $product->name }}</td>
                                         <td>
-                                            @if ($category->status == 1)
+                                            @currency($product->original_price)
+                                        </td>
+                                        <td>
+                                            @currency($product->selling_price)
+                                        </td>
+                                        <td>{{ $product->quantity }}</td>
+                                        <td>{{ $product->sentraBibit->name }}</td>
+                                        <td>
+                                            @if ($product->trending == 1)
+                                            <div class="badge badge-success">Ya</div>
+                                            @else
+                                            <div class="badge badge-danger">Tidak</div>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($product->status == 1)
                                             <div class="badge badge-primary">Draft</div>
                                             @else
                                             <div class="badge badge-success">Publish</div>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/category/'.$category->id.'/edit') }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                                            <a href="#" wire:click.prevent='deleteConfirmation({{ $category->id }})' class="btn btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                            <a href="{{ url('admin/products/'.$product->id.'/edit') }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                            <a href="#" wire:click.prevent='deleteConfirmation({{ $product->id }})' class="btn btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                                         </td>
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Data Kategori tidak ditemukan!</td>
+                                        <td colspan="10" class="text-center">Data Produk tidak ditemukan!</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
@@ -77,7 +95,7 @@
                             <div class="card-footer text-right">
                                 <nav class="d-inline-block">
                                     <ul class="pagination mb-0">
-                                        {{ $categories->links() }}
+                                        {{ $products->links() }}
                                     </ul>
                                 </nav>
                             </div>
@@ -86,5 +104,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>

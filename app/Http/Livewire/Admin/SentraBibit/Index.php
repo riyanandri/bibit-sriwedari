@@ -25,7 +25,7 @@ class Index extends Component
         $this->validate([
             'name' => 'required|string',
             'slug' => 'required|string',
-            'status' => 'required',
+            'status' => 'nullable',
         ]);
 
         SentraBibit::create([
@@ -63,7 +63,7 @@ class Index extends Component
         $this->validate([
             'name' => 'required|string',
             'slug' => 'required|string',
-            'status' => 'required',
+            'status' => 'nullable',
         ]);
 
         SentraBibit::findOrFail($this->sentra_id)->update([

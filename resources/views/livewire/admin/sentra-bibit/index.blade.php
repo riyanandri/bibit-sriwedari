@@ -1,3 +1,7 @@
+@push('css')
+<link rel="stylesheet" href="{{ asset('admin/node_modules/selectric/public/selectric.css') }}">
+@endpush
+
 <div>
     @include('livewire.admin.sentra-bibit.modal-form')
     <section class="section">
@@ -42,10 +46,11 @@
                                 <table class="table table-striped mb-0">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Sentra Bibit</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
+                                            <th width="5%">No</th>
+                                            <th width=30%>Nama</th>
+                                            <th width="30%">Slug</th>
+                                            <th width="15%">Status</th>
+                                            <th width="20%">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -53,6 +58,7 @@
                                         <tr>
                                             <td>{{ $sentra->id }}</td>
                                             <td>{{ $sentra->name }}</td>
+                                            <td>{{ $sentra->slug }}</td>
                                             <td>
                                                 @if ($sentra->status == 1)
                                                 <div class="badge badge-primary">Draft</div>
@@ -89,6 +95,7 @@
 </div>
 
 @push('js')
+<script src="{{ asset('admin/node_modules/selectric/public/jquery.selectric.min.js') }}"></script>
 <script src="{{ asset('admin/node_modules/jquery-ui-dist/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('admin/node_modules/sweetalert/dist/sweetalert.min.js') }}"></script>
 <script src="{{ asset('admin/js/page/modules-sweetalert.js') }}"></script>
