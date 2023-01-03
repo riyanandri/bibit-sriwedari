@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
+// Route::get('/categories', [App\Http\Controllers\Frontend\FrontendController::class, 'categories']);
 
 Auth::routes();
 

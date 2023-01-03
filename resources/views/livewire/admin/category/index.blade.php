@@ -54,7 +54,7 @@
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->slug }}</td>
-                                        <td>{{ $category->description }}</td>
+                                        <td>{!! html_entity_decode($category->description) !!}</td>
                                         <td>
                                             @if ($category->status == 1)
                                             <div class="badge badge-primary">Draft</div>

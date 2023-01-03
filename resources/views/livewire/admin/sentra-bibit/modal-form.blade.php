@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label>Slug</label>
                         <input type="text" class="form-control @error('slug') is-invalid @enderror" wire:model.defer="slug" name="slug">
-                        @error('name')
+                        @error('slug')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
