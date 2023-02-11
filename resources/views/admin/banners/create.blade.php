@@ -1,92 +1,95 @@
 @extends('layouts.admin')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('admin/node_modules/summernote/dist/summernote-bs4.css') }}">
-<link rel="stylesheet" href="{{ asset('admin/node_modules/selectric/public/selectric.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/vendor/select2/dist/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/vendor/quill/dist/quill.core.css') }}">
 @endpush
 
-@section('content')
-<section class="section">
-    <div class="section-header">
-        <h1>Tambah Data Banner</h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Banner</a></div>
-            <div class="breadcrumb-item">Tambah data</div>
-        </div>
-    </div>
+@section('header')
+Tambah Data Banner
+@endsection
 
-    <div class="section-body">
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-12">
-                <div class="card">
-                    <form action="{{ url('admin/banners') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="card-header">
-                            <h4>Form Tambah Data</h4>
+@section('content')
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card-wrapper">
+          <!-- Input groups -->
+          <div class="card">
+            <!-- Card header -->
+            <div class="card-header">
+                <a href="{{ url('admin/banners') }}" class="btn btn-primary" type="button">
+                    <span class="btn-inner--text">Kembali</span>
+                </a>
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+              <form action="{{ url('admin/banners') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <!-- Input groups with icon -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="title">Judul</label>
+                          <input class="form-control @error('title') is-invalid @enderror" name="title" type="text"/>
+                          @error('title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                          @enderror
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label>Judul</label>
-                                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title">
-                                        @error('title')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label>Deskripsi</label>
-                                        <textarea class="summernote form-control @error('description') is-invalid @enderror" name="description"></textarea>
-                                        @error('description')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-lg-6">
-                                    <div class="form-group mb-0">
-                                        <label>Banner</label>
-                                        <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
-                                        @error('image')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-6">
-                                    <div class="form-group mb-0">
-                                        <label>Status</label>
-                                        <select class="form-control selectric" name="status">
-                                            <option value="0">Publish</option>
-                                            <option value="1">Draft</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="image">Upload Gambar</label>
+                          <input class="form-control @error('image') is-invalid @enderror" name="image" type="file"/>
+                          @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                          @enderror
                         </div>
-                        <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="description">Deskripsi</label>
+                            <textarea class="form-control @error('description') is-invalid @enderror" name="description"></textarea>
+                            @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control" data-toggle="select" name="status">
+                                <option value="0">Publish</option>
+                                <option value="1">Draft</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-icon btn-primary float-right" type="submit">
+                    <span class="btn-inner--icon"><i class="ni ni-cloud-upload-96"></i></span>
+                    <span class="btn-inner--text">Upload</span>
+                </button>
+              </form>
             </div>
         </div>
     </div>
-</section>
+</div>
 @endsection
 
 @push('js')
-<script src="{{ asset('admin/node_modules/summernote/dist/summernote-bs4.js') }}"></script>
-<script src="{{ asset('admin/node_modules/selectric/public/jquery.selectric.min.js') }}"></script>
+<script src="{{ asset('admin/vendor/select2/dist/js/select2.min.js') }}"></script>
+<script src="{{ asset('admin/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('admin/vendor/nouislider/distribute/nouislider.min.js') }}"></script>
+<script src="{{ asset('admin/vendor/quill/dist/quill.min.js') }}"></script>
+<script src="{{ asset('admin/vendor/dropzone/dist/min/dropzone.min.js') }}"></script>
+<script src="{{ asset('admin/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 @endpush

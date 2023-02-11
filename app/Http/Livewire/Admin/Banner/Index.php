@@ -13,9 +13,9 @@ class Index extends Component
     public $banner_id;
     protected $listeners = ['deleteConfirmed' => 'deleteBanner'];
 
-    public function deleteConfirmation($banner_id)
+    public function deleteConfirmation($id)
     {
-        $this->banner_id = $banner_id;
+        $this->banner_id = $id;
         $this->dispatchBrowserEvent('show-delete-confirmation');
     }
 

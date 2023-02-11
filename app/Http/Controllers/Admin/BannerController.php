@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\BannerFormRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BannerController extends Controller
 {
@@ -41,7 +42,9 @@ class BannerController extends Controller
             'status' => $validated['status'],
         ]);
 
-        return redirect('admin/banners')->with('message', 'Data banner berhasil ditambahkan');
+        Alert::success('Sukses', 'Data banner berhasil ditambahkan!');
+
+        return redirect('admin/banners');
     }
 
     public function edit(Banner $banner)
@@ -76,6 +79,8 @@ class BannerController extends Controller
             'status' => $validated['status'],
         ]);
 
-        return redirect('admin/banners')->with('message', 'Data banner berhasil diupdate');
+        Alert::success('Sukses', 'Data banner berhasil diupdate!');
+
+        return redirect('admin/banners');
     }
 }

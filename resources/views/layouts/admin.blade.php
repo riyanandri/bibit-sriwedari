@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Bibit Sriwedari') }}</title>
+  <title>Admin Dashboard - Bibit Sriwedari</title>
 
   <!-- Favicon -->
   <link rel="icon" href="{{ asset('admin/img/brand/favicon.png') }}" type="image/png">
@@ -20,7 +20,7 @@
   <!-- CSS Libraries -->
   @stack('css')
   <!-- Argon CSS -->
-  <link rel="stylesheet" href="{{ asset('admin/css/argon.css?v=1.1.0') }}" type="text/css">
+  <link rel="stylesheet" href="{{ asset('admin/css/argon.css') }}" type="text/css">
   @livewireStyles
 </head>
 
@@ -38,7 +38,7 @@
     <div class="container-fluid mt--6">
       @yield('content')
       <!-- Footer -->
-      @include('layouts.admin.footer')
+      {{-- @include('layouts.admin.footer') --}}
     </div>
   </div>
   <!-- Argon Scripts -->
@@ -48,11 +48,31 @@
   <script src="{{ asset('admin/vendor/js-cookie/js.cookie.js') }}"></script>
   <script src="{{ asset('admin/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
   <script src="{{ asset('admin/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- JS Libraies -->
   @stack('js')
   <!-- Argon JS -->
-  <script src="{{ asset('admin/js/argon.js?v=1.1.0') }}"></script>
+  <script src="{{ asset('admin/js/argon.js') }}"></script>
+  <script>
+    window.addEventListener('show-delete-confirmation', event => {
+      Swal.fire({
+        title: 'Anda yakin?',
+        text: "Data yang telah dihapus tidak dapat dikembalikan!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#0e1421',
+        cancelButtonColor: '#ced4da',
+        cancelButtonText: 'Kembali',
+        confirmButtonText: 'Ya, hapus!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Livewire.emit('deleteConfirmed')
+        }
+      })
+    });
+  </script>
+  @include('sweetalert::alert')
   @livewireScripts
 </body>
 
