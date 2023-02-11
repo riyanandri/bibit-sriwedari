@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\SentraBibit;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Index extends Component
 {

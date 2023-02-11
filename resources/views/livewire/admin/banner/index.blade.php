@@ -1,15 +1,5 @@
 <div class="row">
     <div class="col">
-        {{-- @if (session('message'))
-            <div class="alert alert-success alert-dismissible show fade">
-                <div class="alert-body">
-                    <button class="close" data-dismiss="alert">
-                        <span>&times;</span>
-                    </button>
-                    {{ session('message') }}
-                </div>
-            </div>
-        @endif --}}
       <div class="card">
         <!-- Card header -->
         <div class="card-header">
@@ -51,14 +41,12 @@
                         @endif
                     </td>
                     <td class="table-actions">
-                        <a href="{{ url('admin/banners/'.$banner->id.'/edit') }}" class="table-action" data-toggle="tooltip" data-original-title="Edit banner">
+                        <a href="{{ url('admin/banners/'.$banner->id.'/edit') }}" class="table-action" data-toggle="tooltip" data-original-title="Edit">
                             <i class="fas fa-user-edit"></i>
                           </a>
-                          <a href="javascript:void(0)" wire:click.prevent='deleteConfirmation({{ $banner->id }})' class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete banner">
+                          <a href="javascript:void(0)" wire:click.prevent='deleteConfirmation({{ $banner->id }})' class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete">
                             <i class="fas fa-trash"></i>
                           </a>
-                        {{-- <a href="{{ url('admin/banners/'.$banner->id.'/edit') }}" class="btn btn-icon icon-left btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                        <a href="#" wire:click.prevent='deleteConfirmation({{ $banner->id }})' class="btn btn-icon icon-left btn-danger"><i class="fas fa-trash"></i> Hapus</a> --}}
                     </td>
                   </tr>
                 @empty

@@ -26,23 +26,6 @@ Banner
 <script src="{{ asset('admin/vendor/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('admin/vendor/datatables.net-select/js/dataTables.select.min.js') }}"></script>
 <script>
-    // window.addEventListener('show-delete-confirmation', event => {
-    //     swal({
-    //             title: 'Anda yakin?'
-    //             , text: 'Ingin menghapus data ini?'
-    //             , icon: 'warning'
-    //             , buttons: true
-    //             , dangerMode: true
-    //         , })
-    //         .then((willDelete) => {
-    //             if (willDelete) {
-    //                 Livewire.emit('deleteConfirmed')
-    //             } else {
-    //                 swal('Data anda masih aman!');
-    //             }
-    //         });
-    // });
-
     window.addEventListener('bannerDeleted', event => {
         Swal.fire(
         'Berhasil',
