@@ -11,8 +11,8 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $banners = Banner::where('status', '0')->get();
-        $categories = Category::where('status', '0')->get();
-        return view('frontend.index', compact('banners', 'categories'));
+        // $banners = Banner::where('status', '0')->get();
+        // $categories = Category::where('status', '0')->get();
+        return view('client.index');
     }
 }
